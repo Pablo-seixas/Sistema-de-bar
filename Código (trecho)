@@ -1,0 +1,16 @@
+ Código (trecho)
+
+Arquivo: Db.cs
+
+  c#
+public void AddProduto(string nome, decimal preco, int estoque)
+{
+    using var con = new NpgsqlConnection(cs);
+    con.Open();
+    using var cmd = new NpgsqlCommand("insert into produtos(nome,preco,estoque) values(@n,@p,@e)", con);
+    cmd.Parameters.AddWithValue("n", nome);
+    cmd.Parameters.AddWithValue("p", preco);
+    cmd.Parameters.AddWithValue("e", estoque);
+    cmd.ExecuteNonQuery();
+}
+
